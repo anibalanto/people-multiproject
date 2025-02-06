@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- POM padre que integra people y people-consumer -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- Definición de identificación del proyecto aggregator -->
+  <groupId>ar.lamansys</groupId>
+  <artifactId>multiproject</artifactId>
+  <version>${ar.lamansys.people.version}</version>
+  <packaging>pom</packaging>
+  <name>Multi-Project People</name>
+
+  <!-- Se listan los módulos que se integran -->
+  <modules>
+    <module>people</module>
+    <module>edutaction</module>
+    <module>healt</module>
+  </modules>
+
+</project>
+
