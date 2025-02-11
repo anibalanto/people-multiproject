@@ -26,10 +26,199 @@ people.service-impl=core
 people.service-impl=api-access
 people.api.base-url=http://localhost:8080
 ```
+## Ejemplos instanciados
 
+### 1. Monolítico independiente
+
+- Monolítico para `healt` y `education`.
+- Se accede a la implementación de `people` a través del módulo `people.core`.
+- Cada instancia tiene su propia base de datos `people`.
+
+```properties
+people.service-impl=core
+```
+
+```mermaid
+graph TB
+%% Definición de subgráficos para organizar los componentes
+subgraph education
+e1(education-class)
+e2(core)
+end
+
+subgraph eeducation-db
+edb[(e-people)]
+end
+
+subgraph healt
+h1(healt-consultory)
+h2(core)
+end
+
+subgraph healt-db
+hdb[(h-people)]
+end
+
+%% Relaciones entre componentes
+e1 -.GetPersonaByUri.-> e2
+e2 --> edb
+
+h1 -.GetPersonaByUri.-> h2
+h2 --> hdb
+
+
+```
+### 2. Monolítico con datos compartidos
+
+- Monolítico para `healt` y `education`.
+- Se accede a la implementación de `people` a través del  `people.core`.
+- Ambas instancias comparten la base de datos `people`.
+
+
+
+```mermaid
+graph TB
+%% Definición de subgráficos para organizar los componentes
+subgraph education
+e1(education-class)
+e2(core)
+end
+
+
+subgraph healt
+h1(healt-consultory)
+h2(core)
+end
+
+subgraph general-db
+db[(people)]
+end
+
+%% Relaciones entre componentes
+e1 -.GetPersonaByUri.-> e2
+e2 --> db
+
+h1 -.GetPersonaByUri.-> h2
+h2 --> db
+
+
+```
+
+### 3. Distribuido con acceso a única instancia de people
+
+- Distribuido para `healt` y `education`.
+- Se accede a la implementación de `people` a través del módulo `people.api-access` (una `api rest`).
+- La instancia de `people` acceden a una base de datos única de `people`.
+
+```properties
+people.service-impl=api-access
+```
+
+```mermaid
+graph TB
+%% Definición de subgráficos para organizar los componentes
+subgraph education
+e1(education-class)
+e2(api-access)
+end
+
+subgraph healt
+h1(healt-consultory)
+h2(api-access)
+end
+
+subgraph people
+p1(api)
+p2(core)
+end
+
+subgraph general-db
+db[(people)]
+end
+
+%% Relaciones entre componentes
+e1 -.GetPersonaByUri.-> e2
+e2 --/person/{uri}--> p1
+
+h1 -.GetPersonaByUri.-> h2
+h2 --"/person/{uri}"--> p1
+    
+p1 -.GetPersonaByUri.-> p2
+p2 --> db
+```
+
+### 4. Distribuido con acceso a multiples instancias de people
+
+- Distribuido para `healt` y `education`.
+- Se accede a la implementación de `people` a través del modulo `people.api-access` (una `api rest`).
+- se configura para que `api-access` se comunique con un proxy que deriva las peticiones a tres instancias de `people`.
+- Las instancias de `people` acceden a una base de datos única de `people`.
+
+```properties
+people.service-impl=api-access
+```
+
+```mermaid
+graph TB
+%% Definición de subgráficos para organizar los componentes
+subgraph education
+e1(education-class)
+e2(api-access)
+end
+
+subgraph healt
+h1(healt-consultory)
+h2(api-access)
+end
+
+subgraph people-proxy
+pr[(proxy)]
+end
+
+subgraph people1
+p11(api)
+p12(core)
+end
+
+subgraph people2
+p21(api)
+p22(core)
+end
+
+subgraph people3
+p31(api)
+p32(core)
+end
+
+subgraph general-db
+db[(people)]
+end
+
+%% Relaciones entre componentes
+e1 -.GetPersonaByUri.-> e2
+e2 --/person/{uri}--> pr
+
+h1 -.GetPersonaByUri.-> h2
+h2 --"/person/{uri}"--> pr
+
+pr --> p11
+pr --> p21
+pr --> p31
+    
+p11 -.GetPersonaByUri.-> p12
+p12 --> db
+
+p21 -.GetPersonaByUri.-> p22
+p22 --> db
+
+p31 -.GetPersonaByUri.-> p32
+p32 --> db
+```
 
 ## Aclaraciones
 
-- Los ejemplos responden ante cualquier valor dado como nombre o uri para simplificar la demostración.
+- Los ejemplos responden ante cualquier valor dado de uri para simplificar la demostración.
 
 - Ahora esta todo en el mismo proyecto git. Pero la idea es que haya tres proyectos diferentes people, education y healt. Y que se vinculen con maven a traves de miltiproject (como se puede ver en este pom.xml principal) y con git submodule para tener todo en el mismo lugar.
+
+
