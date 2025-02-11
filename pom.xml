@@ -13,8 +13,16 @@
   <packaging>pom</packaging>
   <name>Multi-Project People</name>
 
+
+  <properties>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
   <!-- Se listan los módulos que se integran -->
   <modules>
+    <module>dynamic-validation</module>
     <module>people</module>
     <module>edutaction</module>
     <module>healt</module>

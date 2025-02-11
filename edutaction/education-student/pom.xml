@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>ar.lamansys</groupId>
-        <artifactId>healt</artifactId>
+        <artifactId>edutaction</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>healt-app</artifactId>
+    <artifactId>education-class</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -22,23 +22,24 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>ar.lamansys</groupId>
-            <artifactId>healt-consultroy</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
             <groupId>ar.lamansys.people</groupId>
             <artifactId>api-access</artifactId>
         </dependency>
         <dependency>
-            <groupId>ar.lamansys.people</groupId>
-            <artifactId>core</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

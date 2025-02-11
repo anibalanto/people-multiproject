@@ -1,13 +1,11 @@
 package ar.lamansys.education.educationclass.infrastructure.rest.input;
 
-import ar.lamansys.education.educationclass.application.student.AddStudentByClass;
 import ar.lamansys.education.educationclass.application.student.GetStudentsByClass;
 import ar.lamansys.education.educationclass.application.teacher.GetTeachersByClass;
 import ar.lamansys.people.shared.object.PersonSO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,18 +19,10 @@ public class ClassPeopleController {
 
     private final GetTeachersByClass getTeachersByClass;
 
-    private final AddStudentByClass addStudentByClass;
-
     @GetMapping("/students")
     public List<PersonSO> getStudents(
             @PathVariable("className") String className) {
         return getStudentsByClass.run(className);
-    }
-
-    @PostMapping("/students")
-    public void postStudent(
-            @PathVariable("className") String className) {
-        addStudentByClass.run(className);
     }
 
     @GetMapping("/teachers")

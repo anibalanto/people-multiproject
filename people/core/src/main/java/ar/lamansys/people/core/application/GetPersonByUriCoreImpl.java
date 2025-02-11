@@ -15,7 +15,8 @@ public class GetPersonByUriCoreImpl implements GetPersonByUri {
                 uri,
                 String.format("Juan %s", uri),
                 String.format("Rodriguez de %s", uri),
-                String.format("juan_%s_rodriguez_de_%s@myemail.com", uri, uri)
+                String.format("juan_%s_rodriguez_de_%s@myemail.com", uri, uri),
+                22
         );
     }
 }
