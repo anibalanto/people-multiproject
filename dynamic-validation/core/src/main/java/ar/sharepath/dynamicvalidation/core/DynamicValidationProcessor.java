@@ -23,11 +23,14 @@ import java.util.List;
 import java.util.Set;
 
 @SupportedAnnotationTypes("ar.sharepath.dynamicvalidation.core.DynamicValidation")
-@SupportedSourceVersion(SourceVersion.RELEASE_21)
+@SupportedSourceVersion(SourceVersion.RELEASE_22)
 @AutoService(Processor.class)
 public class DynamicValidationProcessor extends AbstractProcessor {
 
     private Elements elementUtils;
+
+    public DynamicValidationProcessor() {
+    }
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {

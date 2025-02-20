@@ -5,9 +5,9 @@ Hay tres aplicaciones que se pueden levantar
 
 - PeopleApiApp (dentro del proyecto people): Brinda un ejemplo de microservicio de busqueda de personas por uri.
 - EduactionApp (dentro del proyecto education): Da un ejemplo de busqueda de estudiantes y docentes dado el nombre de un aula.
-- HealtApp (dentro del proyecto healt): Da un ejemplo de busqueda de pacientes y doctores dado el nombre de un consultorio.
+- HealthApp (dentro del proyecto health): Da un ejemplo de busqueda de pacientes y doctores dado el nombre de un consultorio.
 
-Con el ejemplo brindado es posible levantar casos de uso compartidos por el proyecto people (En este caso solo un caso de uso GetPersonByUri) en los proyectos que lo requieren (educacion o healt).
+Con el ejemplo brindado es posible levantar casos de uso compartidos por el proyecto people (En este caso solo un caso de uso GetPersonByUri) en los proyectos que lo requieren (educacion o health).
 
 La ventaja es que se puede acceder a dos implementaciones de los casos de uso (en este caso solo GetPersonByUri) con solo modificar las propiedades:
 
@@ -30,7 +30,7 @@ people.api.base-url=http://localhost:8080
 
 ### 1. Monolítico independiente
 
-- Monolítico para `healt` y `education`.
+- Monolítico para `health` y `education`.
 - Se accede a la implementación de `people` a través del módulo `people.core`.
 - Cada instancia tiene su propia base de datos `people`.
 
@@ -50,12 +50,12 @@ subgraph eeducation-db
 edb[(e-people)]
 end
 
-subgraph healt
-h1(healt-consultory)
+subgraph health
+h1(health-consultory)
 h2(core)
 end
 
-subgraph healt-db
+subgraph health-db
 hdb[(h-people)]
 end
 
@@ -70,7 +70,7 @@ h2 --> hdb
 ```
 ### 2. Monolítico con datos compartidos
 
-- Monolítico para `healt` y `education`.
+- Monolítico para `health` y `education`.
 - Se accede a la implementación de `people` a través del  `people.core`.
 - Ambas instancias comparten la base de datos `people`.
 
@@ -85,7 +85,7 @@ e2(core)
 end
 
 
-subgraph healt
+subgraph health
 h1(healt-consultory)
 h2(core)
 end
@@ -122,8 +122,8 @@ e1(education-class)
 e2(api-access)
 end
 
-subgraph healt
-h1(healt-consultory)
+subgraph health
+h1(health-consultory)
 h2(api-access)
 end
 
@@ -149,7 +149,7 @@ p2 --> db
 
 ### 4. Distribuido con acceso a multiples instancias de people
 
-- Distribuido para `healt` y `education`.
+- Distribuido para `health` y `education`.
 - Se accede a la implementación de `people` a través del modulo `people.api-access` (una `api rest`).
 - se configura para que `api-access` se comunique con un proxy que deriva las peticiones a tres instancias de `people`.
 - Las instancias de `people` acceden a una base de datos única de `people`.
@@ -166,8 +166,8 @@ e1(education-class)
 e2(api-access)
 end
 
-subgraph healt
-h1(healt-consultory)
+subgraph health
+h1(health-consultory)
 h2(api-access)
 end
 
@@ -219,6 +219,6 @@ p32 --> db
 
 - Los ejemplos responden ante cualquier valor dado de uri para simplificar la demostración.
 
-- Ahora esta todo en el mismo proyecto git. Pero la idea es que haya tres proyectos diferentes people, education y healt. Y que se vinculen con maven a traves de miltiproject (como se puede ver en este pom.xml principal) y con git submodule para tener todo en el mismo lugar.
+- Ahora esta todo en el mismo proyecto git. Pero la idea es que haya tres proyectos diferentes people, education y health. Y que se vinculen con maven a traves de miltiproject (como se puede ver en este pom.xml principal) y con git submodule para tener todo en el mismo lugar.
 
 

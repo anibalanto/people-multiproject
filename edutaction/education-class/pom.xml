@@ -12,8 +12,8 @@
     <artifactId>education-class</artifactId>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>22</maven.compiler.source>
+        <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -33,10 +33,6 @@
             <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
-            <groupId>ar.lamansys.people</groupId>
-            <artifactId>api-access</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
@@ -44,12 +40,36 @@
         <dependency>
             <groupId>ar.sharepath.dynamic-validation</groupId>
             <artifactId>core</artifactId>
-            <version>0.0.1</version>
+            <version>${ar.sharepath.dynamic-validation.version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>1.9.7</version>
+        </dependency>
+        <dependency>
+            <groupId>ar.lamansys.people</groupId>
+            <artifactId>shared</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ar.lamansys.people</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ar.lamansys.people</groupId>
+            <artifactId>api-access</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ar.lamansys.alert</groupId>
+            <artifactId>shared</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ar.lamansys.alert</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ar.lamansys.alert</groupId>
+            <artifactId>api-access</artifactId>
         </dependency>
     </dependencies>
 

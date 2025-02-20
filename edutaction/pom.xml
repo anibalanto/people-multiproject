@@ -14,11 +14,13 @@
     </modules>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>22</maven.compiler.source>
+        <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.boot.version>3.3.2</spring.boot.version>
-        <ar.lamansys.people.version>1.0.0-SNAPSHOT</ar.lamansys.people.version>
+        <ar.lamansys.people.version>0.0.1-SNAPSHOT</ar.lamansys.people.version>
+        <ar.lamansys.alert.version>0.0.2-SNAPSHOT</ar.lamansys.alert.version>
+        <ar.sharepath.dynamic-validation.version>0.0.1-SNAPSHOT</ar.sharepath.dynamic-validation.version>
     </properties>
 
     <dependencyManagement>
@@ -39,13 +41,6 @@
 
             <dependency>
                 <groupId>ar.lamansys.people</groupId>
-                <artifactId>api</artifactId>
-                <version>${ar.lamansys.people.version}</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>ar.lamansys.people</groupId>
                 <artifactId>core</artifactId>
                 <version>${ar.lamansys.people.version}</version>
             </dependency>
@@ -55,6 +50,27 @@
                 <groupId>ar.lamansys.people</groupId>
                 <artifactId>shared</artifactId>
                 <version>${ar.lamansys.people.version}</version>
+            </dependency>
+
+
+
+            <dependency>
+                <groupId>ar.lamansys.alert</groupId>
+                <artifactId>api-access</artifactId>
+                <version>${ar.lamansys.alert.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ar.lamansys.alert</groupId>
+                <artifactId>core</artifactId>
+                <version>${ar.lamansys.alert.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>ar.lamansys.alert</groupId>
+                <artifactId>shared</artifactId>
+                <version>${ar.lamansys.alert.version}</version>
             </dependency>
 
             <!--agregar lombok-->

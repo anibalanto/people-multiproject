@@ -6,15 +6,14 @@
     <parent>
         <groupId>ar.lamansys.people</groupId>
         <artifactId>people</artifactId>
-        <version>${ar.lamansys.people.version}</version>
+        <version>${people.version}</version>
     </parent>
 
     <artifactId>api-access</artifactId>
-    <version>${ar.lamansys.people.version}</version>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>22</maven.compiler.source>
+        <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
@@ -25,13 +24,13 @@
         <dependency>
             <groupId>ar.lamansys.people</groupId>
             <artifactId>shared</artifactId>
-            <version>${ar.lamansys.people.version}</version>
+            <version>${people.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>ar.lamansys.people</groupId>
             <artifactId>api</artifactId>
-            <version>${ar.lamansys.people.version}</version>
+            <version>${people.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

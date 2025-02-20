@@ -1,5 +1,7 @@
 package ar.lamansys.education.educationclass.infrastructure.rest.input;
 
+import ar.lamansys.alert.shared.application.GetAlertByUri;
+import ar.lamansys.alert.shared.object.AlertSO;
 import ar.lamansys.education.educationclass.application.student.AddStudentByClass;
 import ar.lamansys.education.educationclass.application.student.GetStudentsByClass;
 import ar.lamansys.education.educationclass.application.teacher.GetTeachersByClass;
@@ -23,10 +25,13 @@ public class ClassPeopleController {
 
     private final AddStudentByClass addStudentByClass;
 
-    @GetMapping("/students")
-    public List<PersonSO> getStudents(
-            @PathVariable("className") String className) {
-        return getStudentsByClass.run(className);
+    private final GetAlertByUri getAlertByUri;
+
+    @GetMapping("/students/{uri}/alerts")
+    public List<AlertSO> getStudentAlerts(
+            @PathVariable("className") String className,
+            @PathVariable("uri") String uri) {
+        return getAlertByUri.run(uri);
     }
 
     @PostMapping("/students")
